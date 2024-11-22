@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Data Reconciliation</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<h1>Data Reconciliation</h1>
+<form method="post" enctype="multipart/form-data" action="/reconcile/upload">
+    <label for="file1">Select First File (CSV or Excel):</label>
+    <input type="file" id="file1" name="file1" required><br><br>
+
+    <label for="file2">Select Second File (CSV or Excel):</label>
+    <input type="file" id="file2" name="file2" required><br><br>
+
+    <label for="key">Reconciliation Key (e.g., ID):</label>
+    <input type="text" id="key" name="key" placeholder="Enter key field name" required><br><br>
+
+    <button type="submit">Reconcile</button>
+</form>
+</body>
+</html>

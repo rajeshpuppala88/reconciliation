@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Reconciliation Results</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<h1>Reconciliation Results</h1>
+
+<div>
+    <h3>Data Comparison:</h3>
+
+    <!-- Side-by-side display of the two datasets -->
+    <div style="display: flex;">
+        <div style="width: 50%; padding-right: 20px;">
+            <h4>Data from File 1</h4>
+            <table border="1">
+                <thead>
+                <tr th:if="${not #lists.isEmpty(data1)}">
+                    <th th:each="field : ${data1[0].fields}" th:text="${field.key}"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="record : ${data1}">
+                    <td th:each="field : ${record.fields}" th:text="${field.value}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <div th:if="${#lists.isEmpty(data1)}">
+                <p>No Date in File 1</p>
+            </div>
+        </div>
+
+        <div style="width: 50%;">
+            <h4>Data from File 2</h4>
+            <table border="1">
+                <thead>
+                <tr th:if="${not #lists.isEmpty(data2)}">
+                    <th th:each="field : ${data2[0].fields}" th:text="${field.key}"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="record : ${data2}">
+                    <td th:each="field : ${record.fields}" th:text="${field.value}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <div th:if="${#lists.isEmpty(data2)}">
+                <p>No Date in File 2</p>
+            </div>
+        </div>
+    </div>
+
+    <h3>Reconciliation Results:</h3>
+
+    <!-- Missing records in File 2 -->
+    <h4>Missing in File 1 (Records in File 2 but not in File 1)</h4>
+    <table border="1">
+        <thead>
+        <tr th:if="${not #lists.isEmpty(missingInSecond)}">
+            <th th:each="field : ${missingInSecond[0].fields}" th:text="${field.key}"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="record : ${missingInSecond}">
+            <td th:each="field : ${record.fields}" th:text="${field.value}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div th:if="${#lists.isEmpty(missingInSecond)}">
+        <p>No Missing records in File 1</p>
+    </div>
+
+    <!-- Missing records in File 1 -->
+    <h4>Missing in File 2 (Records in File 1 but not in File 2)</h4>
+    <table border="1">
+        <thead>
+        <tr th:if="${not #lists.isEmpty(missingInFirst)}">
+            <th th:each="field : ${missingInFirst[0].fields}" th:text="${field.key}"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="record : ${missingInFirst}">
+            <td th:each="field : ${record.fields}" th:text="${field.value}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div th:if="${#lists.isEmpty(missingInFirst)}">
+        <p>No Missing records in File 2</p>
+    </div>
+
+    <!-- Matched records -->
+    <h4>Matched Records</h4>
+    <table border="1">
+        <thead>
+        <tr th:if="${not #lists.isEmpty(matches)}">
+            <th th:each="field : ${matches[0].fields}" th:text="${field.key}"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="record : ${matches}">
+            <td th:each="field : ${record.fields}" th:text="${field.value}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div th:if="${#lists.isEmpty(matches)}">
+        <p>No Matches</p>
+    </div>
+
+</div>
+
+<a href="/reconcile">Go Back</a>
+</body>
+</html>
