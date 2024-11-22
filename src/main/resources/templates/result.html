@@ -5,7 +5,14 @@
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-<h1>Reconciliation Results</h1>
+
+<h1>Reconciliation Results Counts</h1>
+<p><strong>Missing in File 1:</strong> <span th:text="${missingInFirstCount}"></span></p>
+<p><strong>Missing in File 2:</strong> <span th:text="${missingInSecondCount}"></span></p>
+<p><strong>Matches:</strong> <span th:text="${matchesCount}"></span></p>
+<a href="/reconcile">Go Back</a>
+
+<h1>Reconciliation Results with Data</h1>
 
 <div>
     <h3>Data Comparison:</h3>

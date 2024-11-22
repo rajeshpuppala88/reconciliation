@@ -59,6 +59,10 @@ public class ReconciliationController {
             List<ReconciliationRecord> missingInSecond = reconciliationService.findMissingInSecond(data1, data2, keyField);
             List<ReconciliationRecord> matches = reconciliationService.findMatches(data1, data2, keyField);
 
+            model.addAttribute("missingInFirstCount", missingInFirst.size()); // Records missing in File 1
+            model.addAttribute("missingInSecondCount", missingInSecond.size()); // Records missing in File 2
+            model.addAttribute("matchesCount", matches.size()); // Matched records
+
             model.addAttribute("data1", data1); // Data from File 1
             model.addAttribute("data2", data2); // Data from File 2
             model.addAttribute("missingInFirst", missingInFirst); // Records missing in File 1
