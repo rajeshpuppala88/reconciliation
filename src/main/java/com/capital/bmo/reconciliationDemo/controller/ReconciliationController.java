@@ -37,6 +37,20 @@ public class ReconciliationController {
         return "reconcile";
     }
 
+    @GetMapping("/")  // Default mapping for the root URL
+    public String root() {
+        return "redirect:/reconcile"; // Redirect to your reconcile page
+    }
+
+    @GetMapping("/reconcile") // Handle /reconcile
+    public String reconcilePage() {
+        return "reconcile"; // View name to render, assuming you have reconcile.html in templates
+    }
+    @GetMapping("/reconcile/") // Handle /reconcile
+    public String reconcilePageWithSlash() {
+        return "reconcile"; // View name to render, assuming you have reconcile.html in templates
+    }
+
     @PostMapping("/upload")
     public String uploadAndReconcile(
             @RequestParam("file1") MultipartFile file1,
